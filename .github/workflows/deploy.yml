@@ -30,4 +30,4 @@ jobs:
         
 
       - name: Deploy React App to Surge
-        run: surge ./build todo+calcualtor-monahanif.surge.sh --token ${{ secrets.SURGE_TOKEN}}
+        run: surge ./build todo_calcualtor-monahanif.surge.sh --token ${{ secrets.SURGE_TOKEN}}
