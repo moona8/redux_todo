@@ -4,6 +4,7 @@ import { Provider, connect,useSelector } from "react-redux";
 import DoubleCounter from "./DoubleCounter";
 import Todo from "./Todo";
 import store from "./store/store";
+import Calc from "./Calca";
 
 // const INITIAL_STATE = 0;
 // function reducer(state = INITIAL_STATE, action) {
@@ -33,6 +34,7 @@ const App = (props) => {
     return (
         <div>
             <Todo />
+            <Calc/>
             {/* <h1>Counter App</h1>
             <h1>Counter: {props.counter}</h1>
             <DoubleCounter />
