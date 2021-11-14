@@ -1,21 +1,45 @@
 import react,{useState} from 'react'
-const Calc=()=>{
-const [valA,setValA]=useState(0)
-const [valB,setValB]=useState(0)
+import { connect } from "react-redux";
+const Calc=(props)=>{
+const [valA,setValA]=useState('')
+const [valB,setValB]=useState('')
 const [operations,setOperations]=useState('+')
-const [result,setResult]=useState(0)
+const [result,setResult]=useState('')
+console.log("calc ",props.val)
 const submit=()=>{
+   
     if(operations==='+'){
-        setResult(parseInt(valA)+parseInt(valB))
+        props.dispatch({
+            type: "ADD", 
+            valA: parseInt(valA),
+          valB: parseInt(valB) 
+          });
+
+        // setResult(parseInt(valA)+parseInt(valB))
     }
     if(operations==='-'){
-        setResult(parseInt(valA)-parseInt(valB))
+        props.dispatch({
+            type: "SUB",
+            valA: parseInt(valA),
+          valB: parseInt(valB) 
+          });
+        // setResult(parseInt(valA)-parseInt(valB))
     }
     if(operations==='*'){
-        setResult(parseInt(valA)*parseInt(valB))
+        props.dispatch({
+            type: "MULT",
+            valA: parseInt(valA),
+          valB: parseInt(valB) 
+          });
+        // setResult(parseInt(valA)*parseInt(valB))
     }
     if(operations==='/'){
-        setResult(parseInt(valA)/parseInt(valB))
+        props.dispatch({
+            type: "DIVI",
+            valA: parseInt(valA),
+          valB: parseInt(valB) 
+          });
+        // setResult(parseInt(valA)/parseInt(valB))
     }
 }
     return(
@@ -27,16 +51,25 @@ const submit=()=>{
     <h3>{operations}</h3>
     <input type="number" value={valB} onChange={(e)=>setValB(e.target.value)} /><br/>
     <button onClick={submit}>Submit</button>
+
 </div>
 <div>
     <button onClick={()=>setOperations('+')}>+</button>
     <button onClick={()=>setOperations('-')}>-</button>
     <button onClick={()=>setOperations('*')}>*</button>
     <button onClick={()=>setOperations('/')}>/</button>
-
 </div>
 
 </div>
     )
 }
-export default Calc
+const mapStateToProps = (state) => {
+ 
+    return {
+      val: state.calc,
+    };
+  };
+  
+  const connectTodo = connect(mapStateToProps);
+  
+  export default connectTodo(Calc);

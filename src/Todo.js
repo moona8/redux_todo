@@ -21,14 +21,15 @@ const Todo = (props) => {
         payload:{
           val: input,
           key: "item " + Math.floor(Math.random() * 100000),
+          key: "item " +props.todos.length,
         },
       });
-    
+    setInput('')
   };
   const dell = () => {
     props.dispatch({
-      type: "DELL_TODO",
-       payload:[]
+      type: "DELLALL_TODO",
+       
       
     });
   
@@ -37,8 +38,8 @@ const Todo = (props) => {
   return (
     <div className="container">
       <h1>TODO APP (redux)</h1>
-      <input onChange={handleClick} type={input} />
-      <button onClick={onAddItem}>Add Item</button>
+      <input onChange={handleClick} value={input}  />
+      <button onClick={()=>onAddItem()}>Add Item</button>
       <ul>
         {props.todos.map((todos, i) => {
           return (
